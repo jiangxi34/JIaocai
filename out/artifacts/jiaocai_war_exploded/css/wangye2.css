@@ -1,0 +1,51 @@
+
+div.zhuti
+{
+    width: 100%;
+}
+div.zhuti div.shangping
+{
+    width: 290px;
+    height: 400px;
+    border: 2px red solid;
+    margin-left: 25px;
+    margin-top: 20px;
+    float: left;
+}
+div.zhuti a:link
+{
+    text-decoration: none;
+}
+div.zhuti div.shangping div.zhushi
+{
+    width: 288px;
+    height: 114px;
+}
+div.zhuti div.shangping div.zhushi ul
+{
+    list-style: none;
+}
+div.zhuti div.shangping div.zhushi ul li
+{
+    margin-top: 5px;
+}
+div.zhuti div.shangping div.zhushi ul li p
+{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow:ellipsis;
+}
+div.zhuti div.shangping div.zhushi ul a li.lianjie
+{
+    color: #B2B3AD;
+    float: left;
+}
+div.zhuti div.shangping div.zhushi ul a li.lianjie:hover
+{
+    color: red;
+}
+div.zhuti div.shangping div.zhushi ul li.goumai
+{
+    color: #B2B3AD;
+    float: right;
+}/*商品栏*/
