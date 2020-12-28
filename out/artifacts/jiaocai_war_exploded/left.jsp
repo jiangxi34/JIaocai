@@ -31,10 +31,15 @@
             <td width="193" height="252" valign="middle" background="image/denglu.jpg">
 
 			<%if(session.getAttribute("id")==null){%>
-
 			<form method="post" action=DengServlet onSubmit="return land()">
 
 			<table width="80%" height="90"  border="0" align="center" cellpadding="0" cellspacing="0">
+                <%if (request.getAttribute("error")!=null)
+                {%>
+                <tr>
+                    <td width="39%" height="20" ><div align="right" style="color: red"><%=request.getAttribute("error")%></div></td>
+                </tr>
+                <%}%>
               <tr>
                 <td width="39%" height="20"><div align="right">ÓÃ»§Ãû£º</div></td>
                 <td width="61%"><input name="name" type="text" size="13"></td>

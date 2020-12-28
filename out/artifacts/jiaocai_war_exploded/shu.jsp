@@ -2,6 +2,7 @@
 <%@ page import="dao.JiaoCai" %>
 <%@ page import="dao.JiaoCaiImpl" %>
 <%@ page import="model.Shumodel" %>
+<%@ page import="model.Soucang" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
@@ -50,7 +51,7 @@
       }
       if (name3!=null)
       {
-        List<Shumodel> shumodels = dao.getShu();
+        List<Shumodel> shumodels = dao.getShu(name3);
         for (Shumodel shumodel : shumodels) {%>
      <div class="zhuti">
      <div class="shangping">
@@ -67,26 +68,43 @@
          </div>
         <%
         }
-      }else
-      {
-       List<Shumodel> shumodels = dao.getShu();
-        for (Shumodel shumodel : shumodels) {%>
+      }else if (request.getParameter("shou")!=null)
+        {
+              List<Soucang> soucangs=dao.byshoocang(Integer.parseInt(request.getParameter("shou")));
+              for (Soucang soucang:soucangs){
+                 Shumodel shumodel = dao.byShu(soucang.getJ_id());
+                %>
        <div class="zhuti">
          <div class="shangping">
-           <a href="#"><img src=<%=shumodel.getTp()%>></a>
+           <a href="goods_detail.jsp?id=<%=shumodel.getId()%>"><img src=<%=shumodel.getTp()%>></a>
            <div class="zhushi">
              <ul>
                <li style="color: red">$<%=shumodel.getJg()%> &nbsp&nbsp &nbsp&nbsp 类型：<%=shumodel.getLb()%></li>
                <li>《<%=shumodel.getJ_name()%>》</li>
                <li><p><%=shumodel.getJs()%></p></li>
                <a href="goods_detail.jsp?id=<%=shumodel.getId()%>"><li class="lianjie">查看详情</li></a>
-               <li class="goumai"><%%>人已收藏</li>
+             </ul>
+           </div>
+         </div>
+           <%}
+        }else
+             {
+       List<Shumodel> shumodels = dao.getShu2();
+        for (Shumodel shumodel : shumodels) {%>
+       <div class="zhuti">
+         <div class="shangping">
+           <a href="goods_detail.jsp?id=<%=shumodel.getId()%>"><img src=<%=shumodel.getTp()%>></a>
+           <div class="zhushi">
+             <ul>
+               <li style="color: red">$<%=shumodel.getJg()%> &nbsp&nbsp &nbsp&nbsp 类型：<%=shumodel.getLb()%></li>
+               <li>《<%=shumodel.getJ_name()%>》</li>
+               <li><p><%=shumodel.getJs()%></p></li>
+               <a href="goods_detail.jsp?id=<%=shumodel.getId()%>"><li class="lianjie">查看详情</li></a>
              </ul>
            </div>
          </div>
       <%}
       }%>
-
 
       <jsp:include page="downNews.jsp"></jsp:include>
   </body>

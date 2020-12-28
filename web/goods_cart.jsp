@@ -33,6 +33,7 @@
 	JiaoCai dao = new JiaoCaiImpl();
 	List<GouwuModel> gouWus = dao.byGouwu(admin);
 	int i=0;
+	int dd=0;
 %>
 
 	<!--cart-items-->
@@ -42,6 +43,7 @@
 			   <% for (GouwuModel gouWu:gouWus)
 			   {
 				   i=i+gouWu.getJg()*gouWu.getSl();
+				   dd=gouWu.getD_id();
 			   %>
 			<div class="cart-header col-md-6">
 				<div class="cart-sec simpleCart_shelfItem">
@@ -69,7 +71,14 @@
 			<div class="cart-header col-md-12">
 				<hr>
 				<h3>订单总金额: ¥<%=i%> </h3>
-				<a class="btn btn-success btn-lg" style="margin-left:74%" href="user_center.jsp?je=<%=i%>">去结账</a>
+				<%if (i==0)
+				{%>
+					<a class="btn btn-success btn-lg" style="margin-left:74%" href="shu.jsp?i=<%=i%>">无商品，去选购</a>
+				<%} else {%>
+
+				<a class="btn btn-success btn-lg" style="margin-left:74%" href="user_center.jsp?i=<%=i%>&dd=<%=dd%>">去结账</a>
+				<%}%>
+
 			</div>
 
 		</div>

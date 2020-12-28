@@ -17,17 +17,16 @@
     <link type="text/css" rel="stylesheet" href="css/bootstrap.css">
     <link type="text/css" rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/wangye2.css">
-
 </head>
 
 <script>
-    function deleteContact(id, stuid) {
-        var result = confirm("您确定要删除通讯录【stuid=" + stuid + "】吗？");
+    function deleteContact() {
+        var result = confirm("操作成功");
         if (result) {
-            //执行删除
-            window.location.href = 'delete.jsp?id=' + id;
+
         }
-    }</script>
+    }
+</script>
 <body>
 <%
     int admin;
@@ -39,7 +38,16 @@
         admin=0;
     };
     request.setCharacterEncoding("UTF-8");
-    int id = Integer.parseInt(request.getParameter("id"));
+    int id=0;
+    if(request.getParameter("id")!=null)
+    {
+        id = Integer.parseInt(request.getParameter("id"));
+    }
+    if (request.getAttribute("id")!=null)
+      {
+          id = (int) request.getAttribute("id");
+      }
+
     JiaoCai dao = new JiaoCaiImpl();
     Shumodel contact = dao.byShu(id);
 %>
@@ -82,13 +90,20 @@
                     <div class="clearfix"></div>
                 </div>
              <%if (admin!=0){%>
-                <div class="btn_form">
-                    <a href="AddGouwuServelt?admin=<%=admin%>&j_id=<%=contact.getId()%>" class="add-cart item_add" onclick="deleteContact()">加入订单</a>
-                </div>
 
                 <div class="btn_form">
-                    <a href="BuyServlet?admin=<%=admin%>&j_id=<%=contact.getId()%>%>" class="add-cart item_add">收藏</a>
+                    <a href="AddGouwuServelt?admin=<%=admin%>&j_id=<%=contact.getId()%>" class="add-cart item_add" onclick="deleteContact()">加入购物车</a>
                 </div>
+                <%if (dao.byShouchang(admin,id)==0)
+                 {%>
+                <div class="btn_form">
+                    <a href="ShoucangServelt?admin=<%=admin%>&j_id=<%=contact.getId()%>" class="add-cart item_add" onclick="deleteContact()">收藏</a>
+                </div>
+                 <%}else {%>
+                <div class="btn_form">
+                    <a href="sShoucangServelt?admin=<%=admin%>&j_id=<%=contact.getId()%>" class="add-cart item_add" onclick="deleteContact()">取消收藏</a>
+                </div>
+                 <%}%>
                 <%} else {%>
                 <h4>登录后才能对商品进行操作哦！！！</h4>
                 <div class="btn_form">

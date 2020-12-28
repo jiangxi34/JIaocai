@@ -34,7 +34,7 @@
         <td height="35" bgcolor="#EFF6FE">
         <div align="center">性别</div></td>
         <td><div align="center">
-         男 <INPUT type=radio value=1 name=sex checked> 女 <INPUT type=radio value=2 name=sex>
+         男 <INPUT type=radio value="男" name=sex checked> 女 <INPUT type=radio value="女" name=sex>
         </div>
         </td>
       </tr>

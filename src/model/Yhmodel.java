@@ -5,7 +5,7 @@ public class Yhmodel {
     private String name;
     private String mm;
     private String sjh;
-    private int sex;
+    private String sex;
     private String sh;
     private int zhye;
 
@@ -41,16 +41,17 @@ public class Yhmodel {
         this.sjh = sjh;
     }
 
-    public int getSex() {
-        return sex;
-    }
-
-    public void setSex(int sex) {
-        this.sex = sex;
-    }
 
     public String getSh() {
         return sh;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 
     public void setSh(String sh) {
